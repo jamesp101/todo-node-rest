@@ -39,6 +39,10 @@ module.exports = new EntitySchema({
     address: {
       type: "varchar",
       nullable: true
+    },
+    scope: {
+      type: "varchar",
+      nullable: true
     }
   }
 })

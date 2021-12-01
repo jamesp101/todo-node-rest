@@ -1,32 +1,36 @@
 
 const connection = require('../database')
 
-const SECRET = "123456"
-
 module.exports = {
 
-  login: async (email = undefined, username = undefined, password = '') => {
-    let con = await connection.getConnection()
-    let repo = con.getRepository('Users')
+  allUsers: async (req, res) => {
+    console.log('hELO')
+    const con = await connection.getConnection()
+    const repo = await con.getRepository('Users')
 
-    let user = (email == undefined)
-      ? await repo.findOne({ username: username, password: password })
-      : await repo.findOne({ email: email, password: password })
+    const f = await repo.find()
+    console.log(f)
 
-    if (user == undefined || user == null)
-      throw Error('User not found')
-
-
-    delete user['password']
-    return user;
+    res.send(f)
+  },
+  editUser: async (req, res) => {
+    res.send('Hello World')
 
   },
 
-  register: async (user) => {
-    let con = await connection.getConnection()
-    let repo = con.getRepository('Users')
-    await repo.save(user)
+  getUser: async (req, res) => {
+
+    res.send('User')
+  },
+
+  getOne: async (req, res) => {
+    res.send('Hello Worl')
+  },
+
+
+  deleteUser: async (req, res) => {
+    res.send('Delete')
+
   }
 
 }
-

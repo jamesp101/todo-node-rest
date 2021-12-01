@@ -1,14 +1,30 @@
 const express = require('express');
-const typeorm = require('typeorm')
 const app = express();
 const cors = require('cors')
+const jwt = require('express-jwt')
+
 const PORT = 9000;
 
-const userctrl = require('./controller/user.controller')
+require('dotenv').config()
 
 app.use(express.json());
 app.use(cors())
 
+// app.use(jwt(
+//   {
+//     secret: process.env.SECRET_JWT,
+//     algorithms: ['HS256']
+//   }
+
+// ))
+
+
+// app.use((err, req, res, next) => {
+//   if (err.code === 'permission_denied') {
+//     res.status(403).send({ message: "Forbidden" })
+//   }
+
+// });
 
 app.use('/', require('./routes/index.route'))
 app.use('/auth', require('./routes/auth.route'))
