@@ -11,7 +11,6 @@ const userController = require('../controller/user.controller')
 
 require('dotenv').config()
 
-
 router.use(jwt(
   {
     secret: process.env.SECRET_JWT,

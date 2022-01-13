@@ -19,9 +19,8 @@ module.exports = {
   },
 
   getUser: async (req, res) => {
-
-    res.send('User')
-  },
+    res.send('HELLO WORLD')
+  }, 
 
   getOne: async (req, res) => {
     res.send('Hello Worl')

@@ -17,9 +17,10 @@ module.exports = {
         synchronize: true,
 
         entities: [
-          require('./entities/user.model'),
+            require('./entities/user.model'),
+            require('./entities/todo.model'),
         ]
-      })
+      });
     }
     return connection;
   }

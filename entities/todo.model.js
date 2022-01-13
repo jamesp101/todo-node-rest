@@ -1,5 +1,4 @@
 
-
 const EntitySchema = require('typeorm').EntitySchema
 
 module.exports = new EntitySchema({
@@ -12,15 +11,17 @@ module.exports = new EntitySchema({
     },
 
     user_id: {
-      type: "int",
-
+        type: "int",
+        nullable: true,
     },
 
     title: {
-      type: "varchar"
+        type: "varchar",
+        nullable: true,
     },
 
     description: {
+        nullable: true,
       type: "varchar"
     },
 

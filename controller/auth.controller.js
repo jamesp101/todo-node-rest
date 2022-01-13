@@ -16,38 +16,38 @@ module.exports = {
       const repo = await con.getRepository('Users')
       let login = req.body;
 
+      // If the user uses email instead of username
       let query = (login.email == undefined) ?
-        { username: login.username }
-        : { email: login.email }
+          { username: login.username }
+          : { email: login.email };
 
-      let user = await repo.findOne(query)
+      let user = await repo.findOne(query);
 
-
-      if (compareHash(user.password))
-        throw Error('Password Error')
-
+      // Check if username or email exist 
       if (user == undefined || user == null)
-        throw Error('User not found')
+        throw Error('User not found');
 
+      // Compare the hash db password and login info hash.
+      // Throw an error if it doesn't match
+      if (compareHash(user.password, generateHash(login.password)))
+        throw Error('Password incorrect!');
 
-      delete user['password']
-
-
+      // Remove the hash from the output 
+      delete user['password'];
 
       user.token = {
         accessToken: generateToken(user),
         refreshToken: refreshToken()
-      }
+      };
 
-      res.send(user)
-      console.log('HEllo')
+      res.send(user);
 
     } catch (e) {
 
-      res.statusCode = 404
+      res.statusCode = 404;
       res.json({
         message: e.message
-      })
+      });
 
     }
   },
@@ -60,7 +60,9 @@ module.exports = {
     user.password = generateHash(user.password)
 
     try {
+      console.log('Hello')
       let x = await repo.save(user);
+      console.log('Hello World')
       delete x['password']
       res.send({
         message: 'User Registered!',

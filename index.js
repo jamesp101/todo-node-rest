@@ -26,9 +26,10 @@ app.use(cors())
 
 // });
 
-app.use('/', require('./routes/index.route'))
-app.use('/auth', require('./routes/auth.route'))
-app.use('/users', require('./routes/users.route'))
+app.use('/', require('./routes/index.route'));
+app.use('/auth', require('./routes/auth.route'));
+app.use('/users', require('./routes/users.route'));
+app.use('/todo', require('./routes/todo.route'));
 
 
 
